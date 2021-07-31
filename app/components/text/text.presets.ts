@@ -8,6 +8,7 @@ const BASE: TextStyle = {
   fontFamily: typography.primary,
   color: color.text,
   fontSize: 15,
+  fontWeight:'400'
 }
 
 /**
@@ -24,7 +25,17 @@ export const presets = {
   /**
    * A bold version of the default text.
    */
-  bold: { ...BASE, fontWeight: "bold" } as TextStyle,
+  bold: { ...BASE, fontFamily: typography.primaryBold, fontWeight:'700' } as TextStyle,
+
+  /**
+   * A light version of the default text.
+   */
+  light: { ...BASE, fontFamily: typography.primaryLight, fontWeight:'300' } as TextStyle,
+
+  /**
+   * A medium version of the default text.
+   */
+  medium: { ...BASE, fontFamily: typography.primaryMedium, fontWeight:'500' } as TextStyle,
 
   /**
    * Large headers.

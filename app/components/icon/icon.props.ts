@@ -1,11 +1,11 @@
-import { ImageStyle, StyleProp, ViewStyle } from "react-native"
+import { ImageStyle, StyleProp, TextStyle, ViewStyle } from "react-native"
 import { IconTypes } from "./icons"
 
 export interface IconProps {
   /**
    * Style overrides for the icon image
    */
-  style?: StyleProp<ImageStyle>
+  style?: StyleProp<ImageStyle|TextStyle>
 
   /**
    * Style overrides for the icon container
@@ -17,5 +17,10 @@ export interface IconProps {
    * The name of the icon
    */
 
-  icon?: IconTypes
+  icon?: IconTypes | string
+
+  /**
+   * is MCI (to load icon from vector icons)
+   */
+  mci?: boolean
 }

@@ -40,6 +40,7 @@ const RootStack = () => {
         options={{
           headerShown: false,
         }}
+        
       />
     </Stack.Navigator>
   )

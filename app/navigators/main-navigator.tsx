@@ -6,7 +6,11 @@
  */
 import React from "react"
 import { createStackNavigator } from "@react-navigation/stack"
-import { WelcomeScreen, DemoScreen, DemoListScreen } from "../screens"
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { ShoppingListScreen } from "../screens"
+import Footer from "../components/footer/footer";
+import { View } from "react-native";
+import { RoutesName } from "../config/Routes";
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -21,26 +25,47 @@ import { WelcomeScreen, DemoScreen, DemoListScreen } from "../screens"
  *   https://reactnavigation.org/docs/typescript#type-checking-the-navigator
  */
 export type PrimaryParamList = {
-  welcome: undefined
-  demo: undefined
-  demoList: undefined
+  account: undefined
+  explore: undefined
+  notification: undefined
+  challenge: undefined
 }
 
 // Documentation: https://reactnavigation.org/docs/stack-navigator/
-const Stack = createStackNavigator<PrimaryParamList>()
+// const Stack = createStackNavigator<PrimaryParamList>()
 
+const BottomTab = createBottomTabNavigator<PrimaryParamList>();
+
+// function StackNavigator(){
+//   return (
+//     <Stack.Navigator
+//       screenOptions={{
+//         cardStyle: { backgroundColor: "transparent" },
+//         headerShown: false,
+//       }}
+//     >
+//       <Stack.Screen name="shoppingList" component={ShoppingListScreen} />
+//     </Stack.Navigator>
+//   )
+// }
+
+function ViewColor(){
+  return <View style={{flex: 1, backgroundColor: 'green'}} />
+}
 export function MainNavigator() {
   return (
-    <Stack.Navigator
-      screenOptions={{
-        cardStyle: { backgroundColor: "transparent" },
-        headerShown: false,
-      }}
-    >
-      <Stack.Screen name="welcome" component={WelcomeScreen} />
-      <Stack.Screen name="demo" component={DemoScreen} />
-      <Stack.Screen name="demoList" component={DemoListScreen} />
-    </Stack.Navigator>
+    <View style={{flex:1}}>
+      <BottomTab.Navigator
+          tabBar={() => null}
+          sceneContainerStyle={{backgroundColor: 'transparent'}}
+          initialRouteName={RoutesName.ACCOUNT}>
+          <BottomTab.Screen name={RoutesName.EXPLORE} component={ViewColor} />
+          <BottomTab.Screen name={RoutesName.ACCOUNT} component={ShoppingListScreen}/>
+          <BottomTab.Screen name={RoutesName.CHALLENGE} component={ViewColor} />
+          <BottomTab.Screen name={RoutesName.NOTIFICATION} component={ViewColor} />
+      </BottomTab.Navigator>
+      <Footer />
+    </View>
   )
 }
 
@@ -53,5 +78,5 @@ export function MainNavigator() {
  *
  * `canExit` is used in ./app/app.tsx in the `useBackButtonHandler` hook.
  */
-const exitRoutes = ["welcome"]
+const exitRoutes = ["account"]
 export const canExit = (routeName: string) => exitRoutes.includes(routeName)

@@ -17,7 +17,13 @@ export const typography = {
   /**
    * The primary font.  Used in most places.
    */
-  primary: Platform.select({ ios: "Helvetica", android: "normal" }),
+  primary: Platform.select({ ios: "Ubuntu", android: "UbuntuRegular" }),
+
+  primaryBold: Platform.select({ ios: "Ubuntu", android: "UbuntuBold" }),
+
+  primaryLight: Platform.select({ ios: "Ubuntu", android: "UbuntuLight" }),
+
+  primaryMedium: Platform.select({ ios: "Ubuntu", android: "UbuntuMedium" }),
 
   /**
    * An alternate font used for perhaps titles and stuff.
